@@ -1,0 +1,52 @@
+body {
+    background-image: url('/static/inventorySystemApp/img/background_login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+
+.login-container {
+    height: 400px;
+    width: 400px;
+    padding: 30px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container h2{
+    color: #2196f3;
+    font-size: 45px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+input.form-control {
+    background-color: #fff;
+    border: 2px solid #2196f3;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+}
+
+input.form-control:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.3);
+}
