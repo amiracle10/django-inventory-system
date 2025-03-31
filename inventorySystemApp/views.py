@@ -23,15 +23,26 @@ def home(request):
 
     return render(request, "inventorySystemApp/home.html")
 
+def topics(request):
+    return render(request, 'inventorySystemApp/topics.html')
+
+def questions(request):
+    return render(request, 'inventorySystemApp/questions.html')
+
+def about(request):
+    return render(request, 'inventorySystemApp/about.html')
+
 
 def receiving_items(request):
 
     return render(request, "inventorySystemApp/receivinf.html")
 
 
-def inventory_management(request):
+# def inventory_management(request):
 
-    return render(request, "inventorySystemApp/inventory.html")
+    # return render(request, "inventorySystemApp/inventory.html")
+
+
 
 
 def send_items(request):
