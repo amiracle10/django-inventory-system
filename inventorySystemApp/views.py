@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+
 
 
 def login(request):
@@ -18,13 +20,26 @@ def login(request):
 
     return render(request, 'inventorySystemApp/login.html')
 
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your account has been created!")
+            return redirect('login')
+        else:
+            messages.error(request, "Error")
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'inventorySystemApp/register.html', {'form': form})
 
 def home(request):
 
     return render(request, "inventorySystemApp/home.html")
 
-def topics(request):
-    return render(request, 'inventorySystemApp/topics.html')
+def discussions(request):
+    return render(request, 'inventorySystemApp/discussions.html')
 
 def questions(request):
     return render(request, 'inventorySystemApp/questions.html')

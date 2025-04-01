@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account</title>
+</head>
+<body>
+
+    <h2>Create an Account</h2>
+
+    <!-- Display any messages like success or error -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Registration Form -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Automatically renders the form fields (username, password, etc.) -->
+        <button type="submit">Register</button>
+    </form>
+
+</body>
+</html>
