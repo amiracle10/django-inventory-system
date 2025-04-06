@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .forms import CustomUserCreationForm 
 
 
 
@@ -22,15 +23,17 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = User.objects.create_user(username=username, password=password)
             messages.success(request, "Your account has been created!")
-            return redirect('login')
+            return redirect('login')  # Redirect to login page after successful registration
         else:
-            messages.error(request, "Error")
+            messages.error(request, "")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
     return render(request, 'inventorySystemApp/register.html', {'form': form})
 
