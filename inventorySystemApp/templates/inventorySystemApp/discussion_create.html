@@ -1,0 +1,38 @@
+{% extends 'inventorySystemApp/partials/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white py-2">
+                        <h4 class="mb-0 text-center">Create a New Discussion</h4>
+                    </div>
+                    <div class="card-body p-3">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="mb-2">
+                                <label for="id_title" class="form-label">Title</label>
+                                {{ form.title|add_class:"form-control form-control-sm" }}
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="id_snippet" class="form-label">Snippet</label>
+                                {{ form.snippet|add_class:"form-control form-control-sm" }}
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="id_body" class="form-label">Body</label>
+                                {{ form.body|add_class:"form-control form-control-sm" }}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Create Discussion</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

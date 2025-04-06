@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from .models import Discussion
 
 class CustomUserCreationForm(forms.Form):
     username = forms.CharField(max_length=150, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
@@ -20,3 +21,8 @@ class CustomUserCreationForm(forms.Form):
         if password.islower() or password.isupper():
             raise ValidationError("Password must contain both uppercase and lowercase letters.")
         return password
+    
+class DiscussionForm(forms.ModelForm):
+    class Meta:
+        model = Discussion
+        fields = ['title', 'snippet', 'body']

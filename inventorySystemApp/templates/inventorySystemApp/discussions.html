@@ -1,1 +1,28 @@
-<h1>Discussions</h1>
+{% extends 'inventorySystemApp/partials/base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Discussions</h1>
+
+    <div class="text-center my-4">
+        <a href="{% url 'discussion_create' %}" class="btn btn-primary">Create a New Discussion</a>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row">
+            {% for discussion in discussions %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{% url 'discussion_detail' discussion.id %}">{{ discussion.title }}</a></h5>
+                            <p class="card-text">{{ discussion.snippet }}</p>
+                            <p class="card-text">{{ discussion.body }}</p>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    {% endblock %}
