@@ -1,25 +1,64 @@
 {% extends 'inventorySystemApp/partials/base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-body">
-                <!-- Title of the Discussion -->
-                <h1 class="display-4">{{ discussion.title }}</h1>
-                
-                
-                <p class="text-muted"> {{ discussion.snippet }}</p>
-
-
-                <!-- Body of the Discussion -->
-                <p class="lead">{{ discussion.body }}</p>
-
-                <!-- Delete Button -->
-                <a href="{% url 'discussion_delete' discussion.id %}" class="btn btn-danger btn-md">Delete Discussion</a>
-
-                <!-- Back to Discussions Link -->
-                <a href="{% url 'discussions' %}" class="btn btn-secondary btn-md ms-3">Back to Discussions</a>
-            </div>
+<div class="container mt-4">
+    <!-- DISCUSSION POST -->
+    <h2>{{ discussion.title }}</h2>
+    <p class="text-muted">Posted by {{ discussion.user.username }} on {{ discussion.created_at }}</p>
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text">{{ discussion.body }}</p>
+            {% if discussion.user == request.user %}
+            <form method="POST" action="{% url 'delete_discussion' id=discussion.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">🗑️ Delete</button>
+            </form>
+            {% endif %}
         </div>
     </div>
+
+    <!-- COMMENTS -->
+    <h4>Comments</h4>
+    {% for comment in discussion.comments.all %}
+            <div class="card mb-2">
+            <div class="card-body">
+                <p>{{ comment.content }}</p>
+                {% if comment.user == request.user %}
+                <form method="POST" action="{% url 'delete_comment' comment.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">🗑️ Delete</button>
+                </form>
+                <small class="text-muted">by {{ comment.user.username }} on {{ comment.created_at }}</small>
+                
+                <!-- {% if request.user == comment.user %} -->
+                    <!-- <form method="post"> -->
+                        <!-- {% csrf_token %} -->
+                        <!-- <textarea name="content" rows="3" class="form-control" placeholder="Write your comment..."></textarea> -->
+                        <!-- <button type="submit" class="btn btn-primary mt-2">Submit Comment</button> -->
+                    <!-- </form> -->
+                <!-- {% endif %} -->
+            </div>
+        </div>
+        {% endif %}
+        <p>No comments yet. Be the first to comment!</p>
+    {% endfor %}
+
+    <!-- ADD COMMENT FORM -->
+    {% if user.is_authenticated %}
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Add a Comment</h5>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <textarea name="content" rows="3" class="form-control" placeholder="Write your comment..."></textarea>
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+    {% endif %}
+</div>
 {% endblock %}
