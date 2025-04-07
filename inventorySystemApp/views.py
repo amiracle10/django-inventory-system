@@ -49,21 +49,27 @@ def home(request):
 # def discussions(request):
     # return render(request, 'inventorySystemApp/discussions.html')
 
-def questions(request):
-    return render(request, 'inventorySystemApp/questions.html')
+def events(request):
+    return render(request, 'inventorySystemApp/events.html')
 
 def about(request):
     return render(request, 'inventorySystemApp/about.html')
 
 
-def receiving_items(request):
+def topics(request):
 
-    return render(request, "inventorySystemApp/receiving.html")
+    return render(request, "inventorySystemApp/topics.html")
 
 
 # View to show all discussions
 def discussions(request):
     discussions = Discussion.objects.all().order_by('-id')  # Sort by the latest discussions
+
+    query = request.GET.get('search', '')
+    if query:
+        discussions = Discussion.objects.filter(title__icontains=query)  # or body__icontains, etc.
+    else:
+        discussions = Discussion.objects.all()
     return render(request, 'inventorySystemApp/discussions.html', {'discussions': discussions})
 
 def discussion_detail(request, pk):

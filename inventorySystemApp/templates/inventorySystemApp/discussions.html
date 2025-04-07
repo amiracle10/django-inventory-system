@@ -1,7 +1,22 @@
-{% extends 'inventorySystemApp/partials/base.html' %}
 
+{% extends 'inventorySystemApp/partials/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/style.css' %}">
 {% block content %}
-    <h1 class="text-center">Discussions</h1>
+    <h1 class="text-center mt-4">Discussions</h1>
+
+    <div class="text-center my-4">
+        <form method="GET" action="{% url 'discussions' %}">
+            <div class="row justify-content-center">
+                <div class="col-md-4">  
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search Discussions" value="{{ request.GET.search }}">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </form>
+    </div>
 
     <div class="text-center my-4">
         <a href="{% url 'discussion_create' %}" class="btn btn-primary">Create a New Discussion</a>
@@ -15,7 +30,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'discussion_detail' discussion.id %}">{{ discussion.title }}</a></h5>
                             <p class="card-text">{{ discussion.snippet }}</p>
-                            <p class="card-text">{{ discussion.body }}</p>
+                            <p class="card-text">{{ discussion.body|truncatewords:5}}</p>
 
                         </div>
                     </div>

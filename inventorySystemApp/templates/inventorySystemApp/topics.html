@@ -1,0 +1,84 @@
+{% extends 'inventorySystemApp/partials/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5">
+    <h1 class="display-4">Explore Topics</h1>
+    <p class="lead">Browse discussions, share your thoughts, and explore new interests!</p>
+  </div>
+
+  <!-- Search Bar Section -->
+  
+
+  <div class="row">
+    <!-- Technology Topic -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="bi bi-laptop"></i> Technology</h3>
+          <p class="card-text">Discussions on the latest in tech, gadgets, software, and innovations.</p>
+          <a href="{% url 'discussions' %}?category=technology" class="btn btn-primary">Explore Technology</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hobbies Topic -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="bi bi-brush"></i> Hobbies</h3>
+          <p class="card-text">Join discussions about photography, painting, gaming, and other creative activities.</p>
+          <a href="{% url 'discussions' %}?category=hobbies" class="btn btn-primary">Explore Hobbies</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Career Development Topic -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="bi bi-briefcase"></i> Career Development</h3>
+          <p class="card-text">Learn about job opportunities, career advice, and self-improvement.</p>
+          <a href="{% url 'discussions' %}?category=career" class="btn btn-primary">Explore Career Development</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Wellness Topic -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="bi bi-heart"></i> Wellness</h3>
+          <p class="card-text">Share tips and stories about maintaining mental and physical well-being.</p>
+          <a href="{% url 'discussions' %}?category=wellness" class="btn btn-primary">Explore Wellness</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal Finance Topic -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="bi bi-wallet"></i> Personal Finance</h3>
+          <p class="card-text">Discuss budgeting, saving, investing, and financial goals.</p>
+          <a href="{% url 'discussions' %}?category=finance" class="btn btn-primary">Explore Personal Finance</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Topic -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h3 class="card-title"><i class="bi bi-book"></i> Education</h3>
+          <p class="card-text">Talk about learning strategies, course experiences, and academic growth.</p>
+          <a href="{% url 'discussions' %}?category=education" class="btn btn-primary">Explore Education</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
